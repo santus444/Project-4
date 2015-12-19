@@ -1,6 +1,13 @@
 apply plugin: 'com.android.application'
 
+sourceCompatibility = JavaVersion.VERSION_1_7
+targetCompatibility = JavaVersion.VERSION_1_7
+
 android {
+
+    lintOptions {
+        abortOnError false
+    }
     compileSdkVersion 22
     buildToolsVersion "22.0.1"
 
@@ -27,6 +34,7 @@ android {
         }
     }
 }
+
 
 dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])

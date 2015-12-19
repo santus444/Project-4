@@ -40,3 +40,7 @@ appengine {
 
 
 }
+check {
+    dependsOn "appengineRun"
+    finalizedBy "appengineStop"
+}
