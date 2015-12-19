@@ -1,3 +1,11 @@
+# Where should the reviewer update the keys?
+
+Application ID@: Project-4/backend/src/main/webapp/WEB-INF/appengine-web.xml
+
+URL @: Project-4/jokeslib/src/main/java/com/example/Jokes
+
+
+
 # Gradle for Android and Java Final Project
 
 In this project, you will create an app with multiple flavors that uses
