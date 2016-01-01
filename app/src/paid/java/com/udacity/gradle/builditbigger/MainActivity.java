@@ -2,24 +2,20 @@ package com.udacity.gradle.builditbigger;
 
 import android.app.ProgressDialog;
 import android.content.Context;
-import android.content.Intent;
-import android.os.AsyncTask;
 import android.os.Bundle;
-import android.support.v4.util.Pair;
 import android.support.v7.app.ActionBarActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 
-import com.example.Jokes;
+import com.example.EndpointsAsyncTask;
 import com.example.santosh.myapplication.backend.myApi.MyApi;
-import com.santoshmandadi.showjokeandlib.ShowJoke;
 
 
 public class MainActivity extends ActionBarActivity {
     private static MyApi myApiService = null;
-    private String jokeFromServer;
     private Context mContext = this;
+    private ProgressDialog progressDialog;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -59,36 +55,9 @@ public class MainActivity extends ActionBarActivity {
     }
 
     private void showJokeActivity() {
-        new EndpointsAsyncTask().execute(new Pair<Context, String>(this, "Manfred"));
-    }
 
-    private class EndpointsAsyncTask extends AsyncTask<Pair<Context, String>, Void, String> {
-        private ProgressDialog progressDialog;
+        new EndpointsAsyncTask(MainActivity.this, false).execute();
 
-
-        @Override
-        protected void onPreExecute() {
-            super.onPreExecute();
-            progressDialog = ProgressDialog.show(mContext, "Wait", "Loading Joke.....");
-
-        }
-
-        @Override
-        protected String doInBackground(Pair<Context, String>... params) {
-            return new Jokes().getJoke();
-        }
-
-        @Override
-        protected void onPostExecute(String result) {
-
-            jokeFromServer = result;
-            progressDialog.dismiss();
-            Intent showJokeIntent = new Intent(mContext, ShowJoke.class);
-            showJokeIntent.putExtra(Intent.EXTRA_TEXT, jokeFromServer);
-            startActivity(showJokeIntent);
-
-
-        }
     }
 
 }

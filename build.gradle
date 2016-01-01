@@ -16,4 +16,10 @@ allprojects {
     repositories {
         jcenter()
     }
+    task runUdacityTests(dependsOn: [
+            ':backend:appengineRun',
+            ':app:connectedAndroidTest',
+            ':backend:appengineStop'
+    ])
 }
+
